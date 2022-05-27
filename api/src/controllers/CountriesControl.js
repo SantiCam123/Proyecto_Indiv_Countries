@@ -1,13 +1,16 @@
-const {Country}= require('../db');
+const {Country, Activity}= require('../db');
 const axios = require('axios');
+const { Op } = require('sequelize');
+const Actividad = require('../models/Activity.js')
 
-async function putDataInDb(req, res, next) {
+
+async function putDataInDb() {
     try {
     const api = await axios('https://restcountries.com/v3/all');
     const bring = await api.data.map(i => {
         return {
         id: i.cca3,
-        name: i.name.official,
+        name: i.name.common,
         image: i.flags[1],
         continent: i.continents[0],
         capital: i.capital?.[0],
@@ -23,31 +26,86 @@ async function putDataInDb(req, res, next) {
     }
 }
 
+
 async function getAllCountries(req, res, next) {
+    const {name} = req.query;
     try {
-        const api = await axios('https://restcountries.com/v3/all');
-        const bring = await api.data.map(i => {
-            return {
-            name: i.name.official,
-            image: i.flags[1],
-            continent: i.continents[0],
-        }
+        if(name) {
+            const bringD = await Country.findAll({
+                where: {
+                   name: {
+                       [Op.iLike]: `%${name}%`
+                    }
+                },
+                includes: {
+                    model: Actividad,
+                    attributes: ['name', 'difficulty', 'time', 'seasons'],
+                    through: {
+                        attributes: [],
+                    }
+                  }
+            });
+            if (bringD.length === 0) {
+                res.status(404).send(`The name: ${name} was not found. Rewrite it and try again`)
+            } else {
+                res.status(200).json(bringD);   
+            }
+        } else {
+        const bring = await Country.findAll({
+            attributes: ['name', 'image', 'continent'],
+            order: [
+                ['name', 'ASC']
+            ]
         })
         res.send(bring);
-        } catch (error) {
-            next(error)
-        }
+    }
+    } catch (error) {
+        next(error)
+    }
 }
+
+async function getCountryById(req, res, next) {
+    const idC = req.params.id.toUpperCase();
+    try {
+    const bringC = await Country.findByPk(idC, {
+        includes: {
+          model: Activity,
+          attributes: ['name', 'difficulty', 'time', 'seasons'],
+          through: {
+              attributes: [],
+          }
+        }
+    });
+    if (!bringC) {
+        res.status(404).send(`The ID: ${idC} does not exist.`)
+    } else {
+        res.send(bringC)  
+    }
+    } catch (error) {
+        next(error)
+    }
+}
+
 
 module.exports = {
     putDataInDb,
-    getAllCountries
+    getAllCountries,
+    getCountryById
 }
 
-/* 
-            id: i.cca3,
-            capital: i.capital?.[0],
-            sub_Reg: i.subregion,
-            area: i.area,
-            population: i.population
-*/
+
+// async function getAllCountries(req, res, next) {
+//     try {
+//         const api = await axios('https://restcountries.com/v3/all');
+//         const bring = await api.data.map(i => {
+//             return {
+//             name: i.name.official,
+//             image: i.flags[1],
+//             continent: i.continents[0],
+//         }
+//         })
+//         res.send(bring);
+//         } catch (error) {
+//             next(error)
+//         }
+// }
