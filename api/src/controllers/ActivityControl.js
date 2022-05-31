@@ -13,13 +13,7 @@ async function createAct(req, res, next) {
             time: time,
             seasons: seasons
         })
-        const whichC = await Country.findAll({
-            where: {
-                name: {
-                    [Op.or]: countries
-                }
-            }
-        })
+
         countries.forEach(i => {
             return createA.addCountry(i)
         });

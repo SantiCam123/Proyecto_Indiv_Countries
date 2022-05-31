@@ -1,7 +1,6 @@
 const {Country, Activity}= require('../db');
 const axios = require('axios');
 const { Op } = require('sequelize');
-const Actividad = require('../models/Activity.js')
 
 
 async function putDataInDb() {
@@ -37,8 +36,8 @@ async function getAllCountries(req, res, next) {
                        [Op.iLike]: `%${name}%`
                     }
                 },
-                includes: {
-                    model: Actividad,
+                include: {
+                    model: Activity,
                     attributes: ['name', 'difficulty', 'time', 'seasons'],
                     through: {
                         attributes: [],
@@ -67,16 +66,19 @@ async function getAllCountries(req, res, next) {
 async function getCountryById(req, res, next) {
     const idC = req.params.id.toUpperCase();
     try {
-    const bringC = await Country.findByPk(idC, {
-        includes: {
+    const bringC = await Country.findAll({
+        where: {
+            id: idC
+        },
+        include: [{
           model: Activity,
           attributes: ['name', 'difficulty', 'time', 'seasons'],
           through: {
               attributes: [],
           }
-        }
+        }]
     });
-    if (!bringC) {
+    if (bringC.length === 0) {
         res.status(404).send(`The ID: ${idC} does not exist.`)
     } else {
         res.send(bringC)  
