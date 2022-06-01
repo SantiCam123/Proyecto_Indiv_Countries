@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const GET_COUNTRIES = 'GET_COUNTRIES';
+export const FILTER_CONTINENT = 'FILTER_CONTINENT';
 
 export function getAllCountries(){
     return async function(dispatch){
@@ -11,5 +12,12 @@ export function getAllCountries(){
         })
     }
 };
+
+export function filterCountryByContinent(continent){
+    return{
+        type: FILTER_CONTINENT,
+        payload: continent
+    }
+}
 
 

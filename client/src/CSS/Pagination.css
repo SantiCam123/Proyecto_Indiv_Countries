@@ -1,0 +1,23 @@
+.prev {
+    display: flex;
+    justify-content: flex-start;
+    padding-right: 20px;
+
+}
+
+.next {
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 20px;
+   
+}
+
+.pag{
+    display: flex;
+    justify-content: space-around;
+}
+
+.botones{
+    display: flex;
+    justify-content: space-around;
+}

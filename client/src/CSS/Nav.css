@@ -1,0 +1,17 @@
+.nav {
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.reset {
+    display: flex;
+    margin-right: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.options {
+    display: flex;
+    flex-flow: row wrap;
+   justify-content: space-around;
+   margin-right: 20px;
+}

@@ -51,7 +51,6 @@ async function getAllCountries(req, res, next) {
             }
         } else {
         const bring = await Country.findAll({
-            attributes: ['name', 'image', 'continent'],
             order: [
                 ['name', 'ASC']
             ]

@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import Cards from "./Cards.jsx";
 import Nav from "./Nav";
+import '../CSS/Home.css';
+import Pagination from "./Pagination";
 
 
 
@@ -16,21 +18,38 @@ export default function Home() {
         dispatch(getAllCountries());
     }, [dispatch])
     
+    //Paginado
+    const [currentPage, setCurrentPage] = useState(1);
+    const [countriesPerPage] = useState(9);
+    const indexOfLastCountry = currentPage * countriesPerPage;
+    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    const currentCountry = allCountries.slice(indexOfFirstCountry, indexOfLastCountry);
+
+    const paginate = (pageNumber) =>{
+        setCurrentPage(pageNumber)
+    }
+
     
     return(
         <div>
+            <div>
             <Nav />
-        <div>
+            </div>
+        <div className="cards">
             {
-                allCountries?.map((e) => {
+                currentCountry?.map((e) => {
                     return(
-                        <fragment>
+                        <div>
                     <Cards name={e.name} image={e.image} continent={e.continent} />
-                        </fragment>
+                        </div>
                     );
                 })
             }
         </div>
+        <div className="pagination">
+            <Pagination countriesPerPage={countriesPerPage} allCountries={allCountries.length} paginate={paginate} />
+        </div>
+        <h5>You are in page: {currentPage}</h5>
             </div>
     )
 }
