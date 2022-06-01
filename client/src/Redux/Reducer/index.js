@@ -1,8 +1,8 @@
-import { FILTER_CONTINENT, GET_COUNTRIES } from "../Actions";
+import { FILTER_ACTIVITY, FILTER_CONTINENT, GET_ACTIVITY, GET_COUNTRIES } from "../Actions";
 
 const initialState = {
     countries: [],
-    activities: [],
+    allActivities: [],
     allCountries: []
 }
 
@@ -15,6 +15,12 @@ function rootReducer(state=initialState, action) {
                 allCountries: action.payload
             }
         
+        case GET_ACTIVITY:
+            return{
+                ...state,
+                allActivities: action.payload
+            }
+        
         case FILTER_CONTINENT:
             const allCountries = [...state.allCountries];
             const stateContinent = allCountries.filter(c => c.continent?.includes(action.payload))
@@ -23,6 +29,13 @@ function rootReducer(state=initialState, action) {
                 countries: stateContinent
             }
         
+        case FILTER_ACTIVITY:
+            const allCountriesA = [...state.allCountries];
+            const stateActivity = allCountriesA.filter(a => a.activities?.filter(n => n.name === action.payload).length > 0)
+            return{
+                ...state,
+                countries: stateActivity
+            }
             
             default: return state
         }

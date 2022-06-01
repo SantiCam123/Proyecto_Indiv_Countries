@@ -53,7 +53,10 @@ async function getAllCountries(req, res, next) {
         const bring = await Country.findAll({
             order: [
                 ['name', 'ASC']
-            ]
+            ],
+            include :{
+              model: Activity,  
+            }
         })
         res.send(bring);
     }

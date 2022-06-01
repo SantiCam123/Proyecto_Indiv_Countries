@@ -1,13 +1,18 @@
 import React from "react";
 import {Link} from 'react-router-dom';
-import { filterCountryByContinent, getAllCountries } from "../Redux/Actions";
+import { filterCountryByActivity, filterCountryByContinent, getAllActivities, getAllCountries } from "../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import '../CSS/Nav.css'
 
 export default function Nav() {
     const dispatch = useDispatch();
-    const allCountries = useSelector((state) => state.countries)
+    const allActivities = useSelector((state) => state.allActivities)
 
+    useEffect(() =>{
+        dispatch(getAllActivities());
+    }, [dispatch])
+    
     function handlerClick(e){
         e.preventDefault();
         dispatch(getAllCountries())
@@ -16,6 +21,11 @@ export default function Nav() {
     function handlerFilterC(e){
         if(e.target.value === 'All') return dispatch(getAllCountries());
         dispatch(filterCountryByContinent(e.target.value))
+    }
+
+    function handlerFilterA(e){
+        if(e.target.value ===  'All') return dispatch(getAllCountries());
+        dispatch(filterCountryByActivity(e.target.value))
     }
 
     return (
@@ -38,11 +48,17 @@ export default function Nav() {
                 <option value='Oceania'>Oceania</option>
                 <option value='Antarctic'>Antarctic</option>
             </select>
-            <select>
-                <option value=''>Filter by Activity</option>
+            <select onChange={(e) => handlerFilterA(e)}>
+                <option value='All'>Filter by Activity</option>
+                {
+                    allActivities.map((e)=>{
+                        return(
+                        <option key={e.id} value={e.name}>{e.name}</option>
+                    )})
+                }
             </select>
             <select>
-                <option value=''>Filter by Population</option>
+                <option value='All'>Filter by Population</option>
                 <option value='Highest'>Highest</option>
                 <option value='Lowerest'>Lowerest</option>
             </select>
