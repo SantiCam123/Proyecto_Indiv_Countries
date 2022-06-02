@@ -9,3 +9,21 @@
     justify-content: space-around;
     margin-top: 20px;
 }
+
+.reset {
+    display: flex;
+    justify-content: center;
+}
+
+.All {
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: url(../Images/map-of-the-world-gfccedab40_1920.jpg);
+   
+}
+
+.currentPage {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}

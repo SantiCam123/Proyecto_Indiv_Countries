@@ -1,10 +1,29 @@
-import { FILTER_ACTIVITY, FILTER_CONTINENT, GET_ACTIVITY, GET_COUNTRIES } from "../Actions";
+import { FILTER_ACTIVITY, FILTER_CONTINENT, GET_ACTIVITY, GET_COUNTRIES, GET_NAME, ORDER_NAME, OREDER_POPULATION } from "../Actions";
 
 const initialState = {
     countries: [],
     allActivities: [],
     allCountries: []
 }
+
+function orderA(array, prop){
+const sort = array.sort((a, b) =>{
+    if(a[prop] > b[prop]) return 1;
+    if(a[prop] < b[prop]) return -1;
+    return 0;
+})
+    return sort;
+}
+
+function orderD(array, prop){
+    const sort = array.sort((a, b) =>{
+        if(a[prop] > b[prop]) return -1;
+        if(a[prop] < b[prop]) return 1;
+        return 0;
+    })
+        return sort;
+    }
+
 
 function rootReducer(state=initialState, action) {
     switch (action.type) {
@@ -19,6 +38,12 @@ function rootReducer(state=initialState, action) {
             return{
                 ...state,
                 allActivities: action.payload
+            }
+
+        case GET_NAME:
+            return{
+                ...state,
+                countries: action.payload
             }
         
         case FILTER_CONTINENT:
@@ -35,6 +60,24 @@ function rootReducer(state=initialState, action) {
             return{
                 ...state,
                 countries: stateActivity
+            }
+        
+        case ORDER_NAME:
+            const allCountriesB = [...state.allCountries];
+            let sortedN = action.payload === 'asc' ?
+            orderA(allCountriesB, 'name') : orderD(allCountriesB, 'name');
+            return{
+                ...state,
+                countries: sortedN
+            }
+
+        case OREDER_POPULATION:
+            const allCountriesC = [...state.allCountries];
+            let sortedP = action.payload === 'Lowerest' ?
+            orderA(allCountriesC, 'population') : orderD(allCountriesC, 'population');
+            return{
+                 ...state,
+                countries: sortedP
             }
             
             default: return state

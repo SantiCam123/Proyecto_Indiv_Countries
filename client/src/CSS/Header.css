@@ -1,0 +1,16 @@
+.options {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+select{
+    background: rgba(0,0,0,0.5);
+    color: white;
+    transition: transform 0.2s;
+}
+
+select:hover{
+    transform: scale(1.2);
+}

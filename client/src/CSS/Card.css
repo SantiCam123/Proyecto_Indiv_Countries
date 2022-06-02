@@ -3,7 +3,14 @@
     flex-flow: column wrap;
     border: 1px solid black;
     margin-bottom: 20px;
-   
+    background: rgba(0,0,0,0.5);
+    transition: transform 0.2s;
+    color: whitesmoke
+}
+
+.card:hover{
+    transform: scale(1.1);
+    border: 3px solid red;
 }
 
 h3 {

@@ -12,3 +12,5 @@ export default function Cards({name, image, continent}){
         </div>
     )
 }
+
+

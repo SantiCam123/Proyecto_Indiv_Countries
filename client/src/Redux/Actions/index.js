@@ -4,6 +4,9 @@ export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_ACTIVITY = 'GET_ACTIVITY';
 export const FILTER_CONTINENT = 'FILTER_CONTINENT';
 export const FILTER_ACTIVITY = 'FILTER_ACTIVITY';
+export const ORDER_NAME = 'ORDER_NAME';
+export const OREDER_POPULATION = 'ORDER_POPULATION';
+export const GET_NAME = 'GET_NAME';
 
 export function getAllCountries(){
     return async function(dispatch){
@@ -25,6 +28,20 @@ export function getAllActivities(){
     }
 }
 
+export function getNameCountries(name){
+    return async function(dispatch){
+        try {
+        const json= await axios.get('http://localhost:3001/countries?name=' + name);
+        return dispatch({
+            type: GET_NAME,
+            payload: json.data
+        })
+        } catch (error) {
+        console.log(error)
+        }
+    }
+}
+
 export function filterCountryByContinent(continent){
     return{
         type: FILTER_CONTINENT,
@@ -36,5 +53,19 @@ export function filterCountryByActivity(activities){
     return{
         type: FILTER_ACTIVITY,
         payload: activities
+    }
+}
+
+export function orderCountryByName(order){
+    return{
+        type: ORDER_NAME,
+        payload: order
+    }
+}
+
+export function orderCountryByPopulation(order){
+    return{
+        type: OREDER_POPULATION,
+        payload: order
     }
 }
