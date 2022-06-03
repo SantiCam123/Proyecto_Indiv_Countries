@@ -7,6 +7,8 @@ export const FILTER_ACTIVITY = 'FILTER_ACTIVITY';
 export const ORDER_NAME = 'ORDER_NAME';
 export const OREDER_POPULATION = 'ORDER_POPULATION';
 export const GET_NAME = 'GET_NAME';
+export const POST_ACTIVITY = 'POST_ACTIVITY';
+
 
 export function getAllCountries(){
     return async function(dispatch){
@@ -37,7 +39,18 @@ export function getNameCountries(name){
             payload: json.data
         })
         } catch (error) {
-        console.log(error)
+        alert(error)
+        }
+    }
+}
+
+export function postAvtivity(payload){
+    return async function(dispatch){
+        try {
+            const json = await axios.post('http://localhost:3001/activity', payload);
+            return json
+        } catch (error) {
+            console.log(error)
         }
     }
 }

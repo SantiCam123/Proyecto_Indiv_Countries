@@ -1,0 +1,27 @@
+.select{
+    display: flex;
+    margin-right: 50%;
+    color: blue;
+    background-color: blanchedalmond;
+    transition: none;
+}
+
+.select:hover{
+    transform: none;
+}
+
+.form{
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column wrap-reverse;
+    padding-top: 20px;
+    border: 2px solid black;
+}
+
+input{
+    margin-bottom: 20px;
+}
+
+p {
+    color: red;
+}

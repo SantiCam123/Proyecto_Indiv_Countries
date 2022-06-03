@@ -1,4 +1,4 @@
-import { FILTER_ACTIVITY, FILTER_CONTINENT, GET_ACTIVITY, GET_COUNTRIES, GET_NAME, ORDER_NAME, OREDER_POPULATION } from "../Actions";
+import { FILTER_ACTIVITY, FILTER_CONTINENT, GET_ACTIVITY, GET_COUNTRIES, GET_NAME, ORDER_NAME, OREDER_POPULATION, POST_ACTIVITY } from "../Actions";
 
 const initialState = {
     countries: [],
@@ -44,6 +44,11 @@ function rootReducer(state=initialState, action) {
             return{
                 ...state,
                 countries: action.payload
+            }
+
+        case POST_ACTIVITY:
+            return{
+                ...state
             }
         
         case FILTER_CONTINENT:
