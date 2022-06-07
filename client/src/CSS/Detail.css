@@ -29,9 +29,9 @@
     flex-flow: column wrap;
     justify-content: center;
     background-color: rgba(0,0,0,0.7);
-    width: 350px;
+    width: fit-content;
     height: 200px;
-    margin-left: 40%;
+    margin-left: 35%;
     color: whitesmoke;
     margin-top: 20px;
 }

@@ -23,7 +23,7 @@ export default function Detail(props) {
                 <div>
                    <div className='detail'>
                    <h1>Welcome to {myCountry[0].name}</h1>
-                   <img src={myCountry[0].image} alt='Not found' width='400px' height='200'/>
+                   <img src={myCountry[0].image} alt='Not found' width='400px' height='210'/>
                    <div className='data'>
                    <h4 style={{marginRight: '20px'}}>Capital: <span>{myCountry[0].capital}</span></h4>
                    <h4 style={{marginRight: '20px'}}>Continent: <span>{myCountry[0].continent}</span></h4>
@@ -41,7 +41,7 @@ export default function Detail(props) {
                         myCountry[0].activities.map((a) => {
                             return(
                                 <div className='activitydata'>
-                                <span style={{marginRight: '20px'}}>Name: {a.name} </span>
+                                <span style={{marginRight: '20px', marginLeft: '10px'}}>Name: {a.name} </span>
                                 <span style={{marginRight: '20px'}}>Difficulty: {a.difficulty} </span>
                                 <span style={{marginRight: '20px'}}>Time: {a.time} </span>
                                 <span style={{marginRight: '20px'}}>Season: {a.seasons} </span>
