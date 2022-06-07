@@ -25,12 +25,12 @@ export default function Detail(props) {
                    <h1>Welcome to {myCountry[0].name}</h1>
                    <img src={myCountry[0].image} alt='Not found' width='400px' height='200'/>
                    <div className='data'>
-                   <h4>Capital: <span>{myCountry[0].capital}</span></h4>
-                   <h4>Continent: <span>{myCountry[0].continent}</span></h4>
-                   <h5>ID: <span>{myCountry[0].id}</span></h5>
-                   <h5>Sub Region: <span>{myCountry[0].sub_Reg}</span></h5>
-                   <h5>Area: <span>{myCountry[0].area}</span></h5>
-                   <h5>Population: <span>{myCountry[0].population}</span></h5>
+                   <h4 style={{marginRight: '20px'}}>Capital: <span>{myCountry[0].capital}</span></h4>
+                   <h4 style={{marginRight: '20px'}}>Continent: <span>{myCountry[0].continent}</span></h4>
+                   <h5 style={{marginRight: '20px'}}>ID: <span>{myCountry[0].id}</span></h5>
+                   <h5 style={{marginRight: '20px'}}>Sub Region: <span>{myCountry[0].sub_Reg}</span></h5>
+                   <h5 style={{marginRight: '20px'}}>Area: <span>{myCountry[0].area}</span></h5>
+                   <h5 style={{marginRight: '20px'}}>Population: <span>{myCountry[0].population}</span></h5>
                    </div>
                    </div>
                 <div className='activity'>
