@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 import { getAllCountries } from "../Redux/Actions";
 import { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
@@ -23,6 +24,7 @@ export default function Home() {
         e.preventDefault();
         dispatch(getAllCountries());
         setCurrentPage(1)
+        alert('Page Reset')
     }
 
     //Paginado
@@ -39,18 +41,24 @@ export default function Home() {
     
     return(
         <div className="All">
-        <div className="reset">
-            <button onClick={(e) => handlerClick(e)}>Reset App</button>
+        <div  className="reseter">
+            <button  className="reset" onClick={(e) => handlerClick(e)}>Reset App</button>
         </div>
             <div>
             <Header />
             </div>
         <div className="cards">
             {
-                currentCountry?.map((e) => {
+                currentCountry.length === 0 ? (
+                    <div>
+                        <h2>Loading...</h2>
+                        <img src='https://upload.wikimedia.org/wikipedia/commons/b/bf/GIF_Mundo_Banderas.gif' alt='Not found' />
+                    </div>
+                ) :
+                currentCountry.map((e) => {
                     return(
                         <div>
-                    <Cards name={e.name} image={e.image} continent={e.continent} />
+                    <Link to={`/countries/${e.id}`}><Cards name={e.name} image={e.image} continent={e.continent} /></Link>
                         </div>
                     );
                 })

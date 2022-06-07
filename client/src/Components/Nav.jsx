@@ -16,21 +16,24 @@ export default function Nav() {
 
     function handleSubmit(e){
         e.preventDefault();
+        if(!name) {
+            alert('The country doesn´t exist')
+        }
         dispatch(getNameCountries(name));
         setName('')
     }
 
     return (
         <nav className="nav">
-            <div className="reset">
-            <Link to='/home'><h5>Henry's Travel</h5></Link>
+            <div className="home">
+            <Link to='/home'><h5 className="thome">Henry's Travel</h5></Link>
             </div>
             <div className="activity">
-            <Link to='/activity'>Create a new activity!</Link>
+            <Link to='/activity'><h5 className="tcreate">Create a new activity!</h5></Link>
             </div>
-            <form className="searchBar">
-                <input type='text' placeholder="Search for..." onChange={(e) => handleInputChange(e)} />
-                <button type='submit' onClick={(e) => handleSubmit(e)}>Search</button>
+            <form onSubmit={(e) => handleSubmit(e)}>
+                <input className="searchBar" type='text' placeholder="Search for..." onChange={(e) => handleInputChange(e)} />
+                <button type='submit' className="search">Search</button>
             </form>
         </nav>
     )

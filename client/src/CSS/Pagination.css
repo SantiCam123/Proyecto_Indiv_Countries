@@ -1,21 +1,37 @@
 .prev {
     display: flex;
     justify-content: flex-start;
-    padding-right: 20px;
+    margin-right: 20px;
+    background-color: rgba(0,0,0,0.5);
+    transition: transform 0.2s;
+    border: none;
+    color: whitesmoke;
+}
 
+.prev:hover{
+    border: 1px solid red;
+    transform: scale(1.1);
 }
 
 .next {
     display: flex;
     justify-content: flex-end;
-    padding-left: 20px;
+    margin-left: 20px;
+    background-color: rgba(0,0,0,0.5);
+    border: none;
+    transition: transform 0.2s;
+    color: whitesmoke;
    
+}
+
+.next:hover{
+    border: 1px solid red;
+    transform: scale(1.1);
 }
 
 
 .botones{
     display: flex;
-    justify-content: space-around;
     
 }
 

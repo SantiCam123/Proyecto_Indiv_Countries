@@ -8,6 +8,7 @@ export const ORDER_NAME = 'ORDER_NAME';
 export const OREDER_POPULATION = 'ORDER_POPULATION';
 export const GET_NAME = 'GET_NAME';
 export const POST_ACTIVITY = 'POST_ACTIVITY';
+export const GET_ID = 'GET_ID';
 
 
 export function getAllCountries(){
@@ -39,7 +40,21 @@ export function getNameCountries(name){
             payload: json.data
         })
         } catch (error) {
-        alert(error)
+        console.log(error)
+        }
+    }
+}
+
+export function getDetail(id){
+    return async function(dispatch){
+        try {
+            var json = await axios.get('http://localhost:3001/countries/' + id);
+            return dispatch({
+                type: GET_ID,
+                payload: json.data 
+            })
+        } catch (error) {
+            console.log(error)
         }
     }
 }
@@ -50,7 +65,7 @@ export function postAvtivity(payload){
             const json = await axios.post('http://localhost:3001/activity', payload);
             return json
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
 }

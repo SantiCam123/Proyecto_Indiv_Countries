@@ -12,27 +12,27 @@ export default function Pagination({countriesPerPage, allCountries, paginate}) {
   
     return (
     <nav className='pag'>
-        <div className='prev'>
+        <div>
                 {pageNumbers.includes(currentPage - 1) && 
                     <button onClick={() => {
                         setCurrentPage(currentPage - 1);
                         paginate(currentPage - 1);
-                    }} >Prev</button>}
+                    }} className='prev' >Prev</button>}
         </div>
         <div className='botones'>
                 {pageNumbers?.map(number => {
                     return(
-                        <button onClick={() => {setCurrentPage(number); paginate(number)}} key={number}>{number}</button>
+                        <button onClick={() => {setCurrentPage(number); paginate(number)}}  key={number}>{number}</button>
                         )
                     })}
 
         </div>
-        <div className='next'>
+        <div>
         {pageNumbers.includes(currentPage + 1) && 
                     <button onClick={() => {
                         setCurrentPage(currentPage + 1);
                         paginate(currentPage + 1);
-                    }} >Next</button>}
+                    }} className='next' >Next</button>}
         </div>
     </nav>
   )

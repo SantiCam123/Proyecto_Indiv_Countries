@@ -38,10 +38,6 @@ async function getAllCountries(req, res, next) {
                 },
                 include: {
                     model: Activity,
-                    attributes: ['name', 'difficulty', 'time', 'seasons'],
-                    through: {
-                        attributes: [],
-                    }
                   }
             });
             if (bringD.length === 0) {
@@ -74,10 +70,6 @@ async function getCountryById(req, res, next) {
         },
         include: [{
           model: Activity,
-          attributes: ['name', 'difficulty', 'time', 'seasons'],
-          through: {
-              attributes: [],
-          }
         }]
     });
     if (bringC.length === 0) {

@@ -12,8 +12,8 @@ function validate(input) {
         errors.name = 'Name is invalid: must be letters only';
     } else if(input.time < 1 || input.time > 24 || input.time === 0){
         errors.time = 'Time can be only to 1h to 24h'
-    } else if(input.countries.length === 0){
-        errors.countries = 'It needs at least 1 Country to create an activity'
+    } else if(!input.countries[0]){
+        errors.countries = 'It needs at least 2 Country to create an activity'
     } else if(input.seasons === ''){
         errors.seasons = 'You need to select at least 1 season to create an activity'
     }
@@ -36,7 +36,7 @@ export default function Create() {
   const [errors, setErrors] = useState({})
   const [input, setInput] = useState({
     name:'',
-    difficulty: 0,
+    difficulty: 1,
     time: 0,
     seasons: '',
     countries: []
@@ -77,6 +77,10 @@ function handleSelect(e){
         ...input,
         countries: [...input.countries, e.target.value]
     })
+    setErrors(validate({
+        ...input,
+        [e.target.name]: e.target.value
+    }))
 }
 
 function handleDelete(e) {
@@ -91,7 +95,10 @@ function handleSubmit(e){
     e.preventDefault();
     if(input.name === ''){
         return alert('Complete the form first to submit!')
-    } 
+    }
+    else if(input.countries.length === 0) {
+        return alert('Complete the form first to submit!')
+    }
     else if(createB(errors)) {
         return alert('Complete the form first to submit!')
     }
@@ -104,7 +111,7 @@ function handleSubmit(e){
     alert('Activity created')
     setInput({
         name:'',
-        difficulty: 0,
+        difficulty: 1,
         time: 0,
         seasons: '',
         countries: [] 
@@ -114,65 +121,67 @@ function handleSubmit(e){
 }
 
     return (
-    <div>
-        <h1>Create your activity!</h1>
+    <div className='allform'>
+        <h1 className='title'>Create your activity!</h1>
         <form onSubmit={(e) => handleSubmit(e)} className='form'>
-            <select className='select' onChange={(e) => handleSelect(e)}>
-                {
-                   allCountries.map((c) =>{
-                       return(
-                           <option key={c.id} value={c.id}>{c.name}</option>
-                       )
-                   })
-                }
-            </select>
-            <ul>
-                {
-                    input.countries.map((c) => {
-                        return(
-                            <div>
-                            <li key={c}>{c}</li>
-                            <button type='button' value={c} onClick={(e) => handleDelete(e)}>X</button>
-                            </div>
-                            )
-                    })
-                }
-            </ul>
-                {errors.countries && (
-                    <p>{errors.countries}</p>
-                )}
             <div>
-                <label>Name: </label>
+                <p>Name: </p>
                 <input type='text' value={input.name} name='name' onChange={(e) => handleChange(e)} required/>
             </div>
                 {errors.name && (
-                    <p>{errors.name}</p>
-                )}
+                    <p style={{color: 'red'}}>{errors.name}</p>
+                    )}
             <div>
-                <label>Difficulty: </label>
-                <input type='range' min='1' max='5' list='tickmarks' value={input.difficulty} name='difficulty' onChange={(e) => handleChange(e)} required/>
+                <p>Difficulty: </p>
+                <input type='range' min='1' max='5' value={input.difficulty} name='difficulty' onChange={(e) => handleChange(e)} required/>
+                <label style={{color: 'white'}}>{input.difficulty}</label>
             </div>
-            <div>
-                <label>Seasons: </label>
+            <div className='seasons'>
+                <p>Seasons: </p>
                 <label><input type='checkbox' name='Summer' value='Summer'onChange={(e) => handleCheck(e)} />Summer</label>
                 <label><input type='checkbox' name='Winter' value='Winter' onChange={(e) => handleCheck(e)} />Winter</label>
                 <label><input type='checkbox' name='Fall' value='Fall' onChange={(e) => handleCheck(e)} />Fall</label>
                 <label><input type='checkbox' name='Spring' value='Spring' onChange={(e) => handleCheck(e)} />Spring</label>
             </div>
             {errors.seasons && (
-                    <p>{errors.seasons}</p>
+                <p style={{color: 'red'}}>{errors.seasons}</p>
                 )}
             <div>
-                <label>Time: </label>
-                <input type='number' value={input.time} name='time' onChange={(e) => handleChange(e)} required/>
+                <p>Time: </p>
+                <input type='number' min='0' max='24' value={input.time} name='time' onChange={(e) => handleChange(e)} required/>
             </div>
             {errors.time && (
-                    <p>{errors.time}</p>
+                <p style={{color: 'red'}}>{errors.time}</p>
                 )}
             <div>
+                <p>Countries: </p>
+                <select className='select' onChange={(e) => handleSelect(e)}>
+                    {
+                       allCountries.map((c) =>{
+                           return(
+                               <option key={c.id} value={c.id}>{c.name}</option>
+                           )
+                       })
+                    }
+                </select>
+                <ul>
+                    {
+                        input.countries.map((c) => {
+                            return(
+                                <div>
+                                <button type='button' className='x' value={c} onClick={(e) => handleDelete(e)}>X</button>
+                                <li key={c}>{c}</li>
+                                </div>
+                                )
+                        })
+                    }
+                </ul>
+                    {errors.countries && (
+                        <p style={{color: 'red'}}>{errors.countries}</p>
+                    )}
                 {
-                   createB(errors) ? (<p>Complete the requirements and the create button will apear!</p>) :
-                    (<button type='submit'>Create</button>) 
+                   createB(errors) ? (<p style={{color: 'red'}}>Complete the requirements and the create button will apear!</p>) :
+                    (<button className='submit' type='submit'>Create</button>) 
                 }
             </div>
         </form>

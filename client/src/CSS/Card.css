@@ -1,27 +1,28 @@
 .card{
     display:flex;
     flex-flow: column wrap;
-    border: 1px solid black;
     margin-bottom: 20px;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.7);
     transition: transform 0.2s;
-    color: whitesmoke
+    color: whitesmoke;
+    text-decoration: none;
 }
 
 .card:hover{
     transform: scale(1.1);
-    border: 3px solid red;
+    border: 3px solid whitesmoke;
+}
+
+.card:link {
+    text-decoration: none;
 }
 
 h3 {
-  text-align: center;  
+  text-align: center;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
 }
 
 h5{
     text-align: center;
-}
-
-img {
-    border: 2px solid black;
-
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
 }
