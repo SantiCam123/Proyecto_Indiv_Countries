@@ -65,6 +65,7 @@ export function postAvtivity(payload){
             const json = await axios.post('http://localhost:3001/activity', payload);
             return json
         } catch (error) {
+            console.log(error)
             alert(error)
         }
     }

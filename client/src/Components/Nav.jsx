@@ -28,7 +28,7 @@ export default function Nav() {
             <div className="home">
             <Link to='/home'><h5 className="thome">Henry's Travel</h5></Link>
             </div>
-            <div className="activity">
+            <div className="Bactivity">
             <Link to='/activity'><h5 className="tcreate">Create a new activity!</h5></Link>
             </div>
             <form onSubmit={(e) => handleSubmit(e)}>

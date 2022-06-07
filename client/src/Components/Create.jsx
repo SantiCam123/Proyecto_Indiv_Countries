@@ -14,10 +14,9 @@ function validate(input) {
         errors.time = 'Time can be only to 1h to 24h'
     } else if(!input.countries[0]){
         errors.countries = 'It needs at least 2 Country to create an activity'
-    } else if(input.seasons === ''){
-        errors.seasons = 'You need to select at least 1 season to create an activity'
+    } else if(input.seasons === 'All'){
+        errors.seasons = 'You need to select 1 season to create an activity'
     }
-
     return errors;
 }
 
@@ -138,10 +137,13 @@ function handleSubmit(e){
             </div>
             <div className='seasons'>
                 <p>Seasons: </p>
-                <label><input type='checkbox' name='Summer' value='Summer'onChange={(e) => handleCheck(e)} />Summer</label>
-                <label><input type='checkbox' name='Winter' value='Winter' onChange={(e) => handleCheck(e)} />Winter</label>
-                <label><input type='checkbox' name='Fall' value='Fall' onChange={(e) => handleCheck(e)} />Fall</label>
-                <label><input type='checkbox' name='Spring' value='Spring' onChange={(e) => handleCheck(e)} />Spring</label>
+                <select className='selectS' name='seasons' value={input.seasons} onChange={(e) => handleChange(e)}>
+                    <option value="All">Seasons</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Spring">Spring</option>
+                    <option value='Winter'>Winter</option>
+                    <option value="Fall">Fall</option>
+                </select>
             </div>
             {errors.seasons && (
                 <p style={{color: 'red'}}>{errors.seasons}</p>
@@ -155,7 +157,7 @@ function handleSubmit(e){
                 )}
             <div>
                 <p>Countries: </p>
-                <select className='select' onChange={(e) => handleSelect(e)}>
+                <select className='selectC' onChange={(e) => handleSelect(e)}>
                     {
                        allCountries.map((c) =>{
                            return(
@@ -188,3 +190,5 @@ function handleSubmit(e){
     </div>
   )
 }
+
+

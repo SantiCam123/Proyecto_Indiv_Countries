@@ -22,7 +22,7 @@ export default function Pagination({countriesPerPage, allCountries, paginate}) {
         <div className='botones'>
                 {pageNumbers?.map(number => {
                     return(
-                        <button onClick={() => {setCurrentPage(number); paginate(number)}}  key={number}>{number}</button>
+                        <button className='num' onClick={() => {setCurrentPage(number); paginate(number)}}  key={number}>{number}</button>
                         )
                     })}
 

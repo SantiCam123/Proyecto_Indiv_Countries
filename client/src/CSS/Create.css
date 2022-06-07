@@ -1,11 +1,11 @@
-.select{
+.selectC{
     display: flex;
     color: whitesmoke;
     background-color: rgba(0,0,0,0.7);
     transition: none;
 }
 
-.select:hover{
+.selectC:hover{
     transform: none;
 }
 
@@ -80,4 +80,16 @@ li{
 
 .submit:hover{
     background-color: green;
+}
+
+.selectS{
+    display: flex;
+    color: whitesmoke;
+    background-color: rgba(0,0,0,0.7);
+    transition: none;
+    width: 300px;
+}
+
+.selectS:hover{
+    transform: none;
 }
