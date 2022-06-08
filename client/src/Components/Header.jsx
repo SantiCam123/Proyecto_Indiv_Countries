@@ -7,6 +7,7 @@ import '../CSS/Header.css'
 export default function Header() {
 const dispatch = useDispatch();
 const allActivities = useSelector((state) => state.allActivities)
+    
       
     useEffect(() =>{
         dispatch(getAllActivities());

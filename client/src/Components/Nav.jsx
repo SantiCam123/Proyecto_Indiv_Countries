@@ -16,9 +16,6 @@ export default function Nav() {
 
     function handleSubmit(e){
         e.preventDefault();
-        if(!name) {
-            alert('The country doesn´t exist')
-        }
         dispatch(getNameCountries(name));
         setName('')
     }
@@ -32,7 +29,7 @@ export default function Nav() {
             <Link to='/activity'><h5 className="tcreate">Create a new activity!</h5></Link>
             </div>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <input className="searchBar" type='text' placeholder="Search for..." onChange={(e) => handleInputChange(e)} />
+                <input className="searchBar" type='text' value={name} placeholder="Search for..." onChange={(e) => handleInputChange(e)} />
                 <button type='submit' className="search">Search</button>
             </form>
         </nav>

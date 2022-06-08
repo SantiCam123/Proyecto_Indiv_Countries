@@ -43,14 +43,14 @@ export default function Detail(props) {
                                 <div className='activitydata'>
                                 <span style={{marginRight: '20px', marginLeft: '10px'}}>Name: {a.name} </span>
                                 <span style={{marginRight: '20px'}}>Difficulty: {a.difficulty} </span>
-                                <span style={{marginRight: '20px'}}>Time: {a.time} </span>
+                                <span style={{marginRight: '20px'}}>Time: {a.time}h </span>
                                 <span style={{marginRight: '20px'}}>Season: {a.seasons} </span>
                                 </div>
                             )
                         })
                         ) :
                         (
-                            <span style={{paddingTop: '10px', textAlign: 'center'}}>There is no activity in this country... Create on by clicking on Create a new activity!!</span>
+                            <span style={{paddingTop: '10px', textAlign: 'center'}}>There is no activity in this country... <br /> Create on by clicking on Create a new activity!!</span>
                         )
                     }
                 </div>

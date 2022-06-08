@@ -2,31 +2,28 @@
     display: flex;
     justify-content: flex-start;
     margin-right: 20px;
-    background-color: rgba(0,0,0,0.5);
-    transition: transform 0.2s;
+    background-color: rgba(0,0,0,0.7);
+    transition: background-color 0.3s linear 0.1s;
     border: none;
     color: whitesmoke;
 }
 
 .prev:hover{
-    border: 1px solid red;
-    transform: scale(1.1);
+    background-color: red;
 }
 
 .next {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-left: 20px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.7);
+    transition: background-color 0.3s linear 0.1s;
     border: none;
-    transition: transform 0.2s;
     color: whitesmoke;
-   
 }
 
 .next:hover{
-    border: 1px solid red;
-    transform: scale(1.1);
+    background-color: red;
 }
 
 

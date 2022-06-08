@@ -27,12 +27,12 @@ async function createAct(req, res, next) {
 }
 
 async function getAllActivities (req, res, next) {
-    try {
-        const bring = await Activity.findAll();
-        res.send(bring)
-    } catch (error) {
-        next(error)
-    }
+    Activity.findAll()
+    .then((result) => {
+        res.send(result)
+    }).catch((err) => {
+        next(err)
+    });
 }
 
 module.exports = {

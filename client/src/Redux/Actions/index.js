@@ -40,6 +40,7 @@ export function getNameCountries(name){
             payload: json.data
         })
         } catch (error) {
+        alert('Country not found... Try Again')
         console.log(error)
         }
     }

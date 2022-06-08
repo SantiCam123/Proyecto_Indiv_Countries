@@ -12,7 +12,7 @@
 .form{
     margin: 0 auto;
     width: 400px;
-    height: 800px;
+    height:fit-content;
     border: 2px solid black;
     background: rgba(0,0,0,0.7);
     padding-left: 10px;
@@ -52,6 +52,7 @@ input {
 li{
     display: flex;
     justify-content: space-around;
+    color: whitesmoke
 }
 
 .x{

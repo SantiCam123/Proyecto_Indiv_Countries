@@ -10,10 +10,10 @@ function validate(input) {
         errors.name = 'Name is required'
     } else if(!/^[a-zA-Z ]*$/.test(input.name)){
         errors.name = 'Name is invalid: must be letters only';
+    } else if(input.name.length <= 2 || input.name.length >= 15){
+        errors.name = 'Name is invalid: the minimum of letters is 2 and the maximum is 15'
     } else if(input.time < 1 || input.time > 24 || input.time === 0){
         errors.time = 'Time can be only to 1h to 24h'
-    } else if(!input.countries[0]){
-        errors.countries = 'It needs at least 2 Country to create an activity'
     } else if(input.seasons === 'All'){
         errors.seasons = 'You need to select 1 season to create an activity'
     }
@@ -58,28 +58,14 @@ function handleChange(e){
 
 }
 
-function handleCheck(e) {
-    if(e.target.checked){
-        setInput({ 
-            ...input,
-            seasons: e.target.value
-        })
-    }
-    setErrors(validate({
-        ...input,
-        [e.target.name]: e.target.value
-    }))
-}
-
 function handleSelect(e){
+    if(Object.values(input.countries).includes(e.target.value)){
+        return alert('This country is already selected')
+    }
     setInput({
         ...input,
         countries: [...input.countries, e.target.value]
     })
-    setErrors(validate({
-        ...input,
-        [e.target.name]: e.target.value
-    }))
 }
 
 function handleDelete(e) {
@@ -96,7 +82,7 @@ function handleSubmit(e){
         return alert('Complete the form first to submit!')
     }
     else if(input.countries.length === 0) {
-        return alert('Complete the form first to submit!')
+        return alert('There should be at least 1 country to create your activity...')
     }
     else if(createB(errors)) {
         return alert('Complete the form first to submit!')
@@ -178,9 +164,6 @@ function handleSubmit(e){
                         })
                     }
                 </ul>
-                    {errors.countries && (
-                        <p style={{color: 'red'}}>{errors.countries}</p>
-                    )}
                 {
                    createB(errors) ? (<p style={{color: 'red'}}>Complete the requirements and the create button will apear!</p>) :
                     (<button className='submit' type='submit'>Create</button>) 

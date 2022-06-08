@@ -46,7 +46,7 @@ async function getAllCountries(req, res, next) {
                 res.status(200).json(bringD);   
             }
         } else {
-        const bring = await Country.findAll({
+         Country.findAll({
             order: [
                 ['name', 'ASC']
             ],
@@ -54,7 +54,9 @@ async function getAllCountries(req, res, next) {
               model: Activity,  
             }
         })
-        res.send(bring);
+        .then((result) => {
+            res.send(result)
+        })
     }
     } catch (error) {
         next(error)
