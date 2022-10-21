@@ -29,6 +29,7 @@ module.exports = (sequelize) => {
     },
     sub_Reg: {
       type: DataTypes.STRING,
+      defaultValue: 'No sub region',
     },
     area: {
       type: DataTypes.INTEGER

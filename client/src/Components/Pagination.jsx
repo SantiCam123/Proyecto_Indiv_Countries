@@ -21,9 +21,15 @@ export default function Pagination({countriesPerPage, allCountries, paginate}) {
         </div>
         <div className='botones'>
                 {pageNumbers?.map(number => {
-                    return(
-                        <button className='num' onClick={() => {setCurrentPage(number); paginate(number)}}  key={number}>{number}</button>
-                        )
+                    if(number === currentPage){
+                        return(
+                            <button style={{backgroundColor: 'red'}} className='num' onClick={() => {setCurrentPage(number); paginate(number)}}  key={number}>{number}</button>
+                            )
+                    } else {
+                        return(
+                            <button className='num' onClick={() => {setCurrentPage(number); paginate(number)}}  key={number}>{number}</button>
+                            )
+                    }
                     })}
 
         </div>

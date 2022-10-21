@@ -4,9 +4,11 @@ import { getAllCountries } from "../Redux/Actions";
 import { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import Cards from "./Cards.jsx";
+import Nav from "./Nav.jsx";
 import '../CSS/Home.css';
 import Pagination from "./Pagination";
 import Header from "./Header";
+import Swal from 'sweetalert2';
 
 
 
@@ -21,10 +23,25 @@ export default function Home() {
 
     //Reseteo
     function handlerClick(e){
-        e.preventDefault();
-        dispatch(getAllCountries());
-        setCurrentPage(1)
-        alert('Page Reset')
+        Swal.fire({
+            title: 'The page will reset',
+            text: "Are you sure you want to do it?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, reset the page'
+        }).then((result) => {
+            if (result.isConfirmed){
+                e.preventDefault();
+                dispatch(getAllCountries());
+                setCurrentPage(1)
+                Swal.fire({
+                    title: 'Reset complete',
+                    icon: 'success'
+            })
+            }
+        })
     }
 
     //Paginado
@@ -41,11 +58,14 @@ export default function Home() {
     
     return(
         <div className="All">
+            <div>
+                <Nav setCurrentPage={setCurrentPage} />
+            </div>
         <div  className="reseter">
             <button  className="reset" onClick={(e) => handlerClick(e)}>Reset App</button>
         </div>
             <div>
-            <Header />
+            <Header setCurrentPage={setCurrentPage} />
             </div>
         <div className="cards">
             {
@@ -66,9 +86,6 @@ export default function Home() {
         </div>
         <div className="pagination">
             <Pagination countriesPerPage={countriesPerPage} allCountries={allCountries.length} paginate={paginate} />
-        </div>
-        <div className="currentPage">
-            <h5>You are in page: {currentPage}</h5>
         </div>
             </div>
     )

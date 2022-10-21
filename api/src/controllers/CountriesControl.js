@@ -34,14 +34,28 @@ async function getAllCountries(req, res, next) {
                 where: {
                    name: {
                        [Op.iLike]: `%${name}%`
-                    }
+                    }  
                 },
                 include: {
                     model: Activity,
                   }
-            });
+                });
+                const bringR = await Country.findAll({
+                    where: {
+                        continent: {
+                            [Op.iLike]: `%${name}%`
+                        }
+                    },
+                    include: {
+                        model: Activity,
+                      }
+                });
             if (bringD.length === 0) {
-                res.status(404).send(`The name: ${name} was not found. Rewrite it and try again`)
+                if(bringR.length === 0) {
+                    res.status(404).send(`The name: ${name} was not found. Rewrite it and try again`)
+                } else {
+                    res.status(200).json(bringR);   
+                }
             } else {
                 res.status(200).json(bringD);   
             }

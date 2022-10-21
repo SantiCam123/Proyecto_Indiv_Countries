@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import '../CSS/Header.css'
 
-export default function Header() {
+export default function Header(props) {
 const dispatch = useDispatch();
 const allActivities = useSelector((state) => state.allActivities)
     
@@ -17,21 +17,25 @@ const allActivities = useSelector((state) => state.allActivities)
     function handlerFilterC(e){
         if(e.target.value === 'All') return dispatch(getAllCountries());
         dispatch(filterCountryByContinent(e.target.value))
+        props.setCurrentPage(1)
     }
 
     function handlerFilterA(e){
         if(e.target.value ===  'All') return dispatch(getAllCountries());
         dispatch(filterCountryByActivity(e.target.value))
+        props.setCurrentPage(1)
     }
 
     function handlerOrderN(e){
         if(e.target.value === 'All') return dispatch(getAllCountries());
         dispatch(orderCountryByName(e.target.value))
+        props.setCurrentPage(1)
     }
 
     function handlerOrderP(e){
         if(e.target.value === 'All') return dispatch(getAllCountries());
         dispatch(orderCountryByPopulation(e.target.value))
+        props.setCurrentPage(1)
     }
 
   return (

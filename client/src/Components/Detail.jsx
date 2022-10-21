@@ -31,6 +31,7 @@ export default function Detail(props) {
                    <h5 style={{marginRight: '20px'}}>Sub Region: <span>{myCountry[0].sub_Reg}</span></h5>
                    <h5 style={{marginRight: '20px'}}>Area: <span>{myCountry[0].area}</span></h5>
                    <h5 style={{marginRight: '20px'}}>Population: <span>{myCountry[0].population}</span></h5>
+                   <h5>You can know more about this country in this <a href={`https://en.wikipedia.org/wiki/${myCountry[0].name}`} target="blank">link</a></h5>
                    </div>
                    </div>
                 <div className='activity'>

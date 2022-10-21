@@ -3,9 +3,10 @@ import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import { getNameCountries } from "../Redux/Actions";
 import '../CSS/Nav.css'
+import Swal from "sweetalert2";
 
 
-export default function Nav() {
+export default function Nav(props) {
     const dispatch = useDispatch()
     const [name, setName] = useState('');
 
@@ -16,8 +17,17 @@ export default function Nav() {
 
     function handleSubmit(e){
         e.preventDefault();
+        if(!name){
+            return Swal.fire({
+                title: 'You have to put the name of the country',
+                icon: 'warning',
+                showConfirmButton: false,
+                timer: 2000
+        })
+        }
         dispatch(getNameCountries(name));
         setName('')
+        props.setCurrentPage(1)
     }
 
     return (

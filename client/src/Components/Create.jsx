@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { getAllCountries, postAvtivity } from "../Redux/Actions";
 import {useHistory} from 'react-router-dom';
 import '../CSS/Create.css'
+import Swal from 'sweetalert2';
 
 function validate(input) {
     const errors = {};
@@ -14,7 +15,7 @@ function validate(input) {
         errors.name = 'Name is invalid: the minimum of letters is 2 and the maximum is 15'
     } else if(input.time < 1 || input.time > 24 || input.time === 0){
         errors.time = 'Time can be only to 1h to 24h'
-    } else if(input.seasons === 'All'){
+    } else if(input.seasons === ''){
         errors.seasons = 'You need to select 1 season to create an activity'
     }
     return errors;
@@ -79,13 +80,28 @@ function handleDelete(e) {
 function handleSubmit(e){
     e.preventDefault();
     if(input.name === ''){
-        return alert('Complete the form first to submit!')
+        return Swal.fire({
+            title: 'Complete the form first to submit!',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: 2000
+    })
     }
     else if(input.countries.length === 0) {
-        return alert('There should be at least 1 country to create your activity...')
+        return Swal.fire({
+            title: 'There should be at least 1 country to complete the form...',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: 2000
+    })
     }
     else if(createB(errors)) {
-        return alert('Complete the form first to submit!')
+        return Swal.fire({
+            title: 'Complete the form first to submit!',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: 2000
+    })
     }
 
     setErrors(validate({
@@ -93,7 +109,12 @@ function handleSubmit(e){
         [e.target.name]: e.target.value
     }))
     dispatch(postAvtivity(input));
-    alert('Activity created')
+    Swal.fire({
+        title: 'Activity created',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 2000
+})
     setInput({
         name:'',
         difficulty: 1,

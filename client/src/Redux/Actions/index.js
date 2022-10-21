@@ -9,6 +9,7 @@ export const OREDER_POPULATION = 'ORDER_POPULATION';
 export const GET_NAME = 'GET_NAME';
 export const POST_ACTIVITY = 'POST_ACTIVITY';
 export const GET_ID = 'GET_ID';
+export const GET_CONTINENT= 'GET_CONTINENT';
 
 
 export function getAllCountries(){
@@ -37,6 +38,21 @@ export function getNameCountries(name){
         const json= await axios.get('http://localhost:3001/countries?name=' + name);
         return dispatch({
             type: GET_NAME,
+            payload: json.data
+        })
+        } catch (error) {
+        alert('Country not found... Try Again')
+        console.log(error)
+        }
+    }
+}
+
+export function getContinetCountries(continent){
+    return async function(dispatch){
+        try {
+        const json= await axios.get('http://localhost:3001/countries?continent=' + continent);
+        return dispatch({
+            type: GET_CONTINENT,
             payload: json.data
         })
         } catch (error) {
