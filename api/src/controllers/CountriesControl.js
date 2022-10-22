@@ -50,14 +50,14 @@ async function getAllCountries(req, res, next) {
                         model: Activity,
                       }
                 });
-            if (bringD.length === 0) {
-                if(bringR.length === 0) {
+            if (bringR.length === 0) {
+                if(bringD.length === 0) {
                     res.status(404).send(`The name: ${name} was not found. Rewrite it and try again`)
                 } else {
-                    res.status(200).json(bringR);   
+                    res.status(200).json(bringD);   
                 }
             } else {
-                res.status(200).json(bringD);   
+                res.status(200).json(bringR);   
             }
         } else {
          Country.findAll({

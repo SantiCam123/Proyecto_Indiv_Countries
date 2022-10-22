@@ -78,7 +78,7 @@ export default function Home() {
                 currentCountry.map((e) => {
                     return(
                         <div>
-                    <Link to={`/countries/${e.id}`}><Cards name={e.name} image={e.image} continent={e.continent} /></Link>
+                    <Link to={`/countries/${e.id}`} style={{textDecoration: 'none'}}><Cards name={e.name} image={e.image} continent={e.continent} /></Link>
                         </div>
                     );
                 })

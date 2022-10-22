@@ -5,6 +5,7 @@ import LandingPage from './Components/Landing_Page.jsx';
 import Nav from './Components/Nav.jsx';
 import Create from './Components/Create.jsx';
 import Detail from './Components/Detail.jsx';
+import Footer from './Components/Footer.jsx';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Route path={'/activity'} component={Create} />
       <Route exact path={'/home'} component={Home}/>
       <Route exact path={'/countries/:id'} component={Detail} />
+      <Route path={['/home', '/countries/:id']} component={Footer} />
     </div>
   );
 }

@@ -1,0 +1,13 @@
+.FAll{
+    display: flex;
+    background-color: black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Simb{
+    display: flex;
+    justify-content: end;
+}

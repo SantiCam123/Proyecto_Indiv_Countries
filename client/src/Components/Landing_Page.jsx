@@ -5,7 +5,7 @@ import '../CSS/LandingPage.css';
 export default function LandingPage(){
     return(
         <div class='fondo'>
-            <Link to='/home'>
+            <Link to='/home' style={{textDecoration: 'none'}}>
             <h1 className="welcome">Welcome to Henry´s travel</h1>
             </Link>
         </div>

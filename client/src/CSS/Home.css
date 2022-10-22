@@ -9,19 +9,18 @@
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .reset{
     background-color: rgba(0,0,0,0.5);
-    transition: transform 0.2s;
+    transition: background-color 0.3s linear 0.1s;
     color: whitesmoke;
     border: none;
 }
 
 .reset:hover{
-    border: 1px solid whitesmoke;
-    transform: scale(1.1);
+    background-color: red;
 }
 
 .reseter {
@@ -34,19 +33,6 @@
     background-attachment: fixed;
     background-size: cover;
     background-image: url(../Images/Diseño\ sin\ título.png);
-}
-
-.currentPage {
-    display: flex;
-    justify-content: center;
-    border: 2px solid black;
-    margin-top: 20px;
-    margin-left: 500px;
-    margin-right: 500px;
-    color: whitesmoke;
-    background-color: rgba(0,0,0,0.5);
-    border-radius: 20px;
-    font-size: 25px;
 }
 
 body {
