@@ -21,6 +21,7 @@ export default function Nav(props) {
 
     return (
         <nav className="nav">
+            {console.log(name)}
             <div className="home">
             <Link to='/home' style={{textDecoration: 'none'}}><h5 className="thome">Henry's Travel</h5></Link>
             </div>

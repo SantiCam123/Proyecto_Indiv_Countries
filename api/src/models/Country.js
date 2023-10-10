@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.TEXT,
-      allowNull: false
+      //allowNull: false
     },
     continent: {
       type: DataTypes.STRING,

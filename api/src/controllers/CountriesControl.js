@@ -5,12 +5,12 @@ const { Op } = require('sequelize');
 
 async function putDataInDb() {
     try {
-    const api = await axios('https://restcountries.com/v3/all');
+    const api = await axios('https://restcountries.com/v3.1/all');
     const bring = await api.data.map(i => {
         return {
         id: i.cca3,
         name: i.name.common,
-        image: i.flags[1],
+        image: i.flags.png,
         continent: i.continents[0],
         capital: i.capital?.[0],
         sub_Reg: i.subregion,
